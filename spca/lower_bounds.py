@@ -41,7 +41,7 @@ def compute_spca_lower_bound_sampling(B, k, n_samples=10000, n_jobs=1):
     return np.max(L_S)
 
 
-def compute_spca_lower_bound_greedy(B, k):
+def compute_spca_lower_bound_greedy(B, k, n_jobs=1):
     """Compute a lower bound of the k-sparse PCA of B.
 
     Parameters
@@ -50,6 +50,9 @@ def compute_spca_lower_bound_greedy(B, k):
         Matrix to extract the sub-matrix from
     k : int
         Sparsity level for the lower bound.
+    n_jobs : int (default: 1)
+        Number of jobs used for computations. Here, this parameter has no
+        effect.
 
     Return
     ------

@@ -29,7 +29,7 @@ if __name__ == "__main__":
         assert method in METHODS, f"Undefined method '{method}'"
         assert method in STYLES, f"You need to define a style for '{method}'"
 
-    K, p = 20, 10
+    K, p = 25, 10
     random_state = 42
     np.random.seed(random_state)
 
@@ -46,7 +46,7 @@ if __name__ == "__main__":
         print(f"\rComputing k-SPCA bounds: {(k-1) / K:7.2%}", end='',
               flush=True)
         for method in run_methods:
-            L_S = METHODS[method](B, k)
+            L_S = METHODS[method](B, k, n_jobs=6)
             if k > 1:
                 # Make sure the results are monotonic
                 L_S = max(L_S, results[method][-1])

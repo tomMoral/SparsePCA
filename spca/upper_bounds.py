@@ -2,7 +2,7 @@
 import cvxpy as cvx
 
 
-def compute_spca_upperbound_optimal(B, k):
+def compute_spca_upperbound_optimal(B, k, n_jobs=1):
     """Compute an upper bound of the k-sparse PCA of B.
 
     Parameters
@@ -11,6 +11,9 @@ def compute_spca_upperbound_optimal(B, k):
         Matrix to extract the sub-matrix from
     k : int
         Sparsity level for the lower bound.
+    n_jobs : int (default: 1)
+        Number of jobs used for computations. Here, this parameter has no
+        effect.
 
     Return
     ------
