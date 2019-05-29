@@ -1,3 +1,4 @@
+import argparse
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -24,6 +25,11 @@ METHODS = {
 
 if __name__ == "__main__":
 
+    parser = argparse.ArgumentParser("Experiments with Sparse PCA")
+    parser.add_argument("--njobs", type=int, default=1,
+                        help="Number of workers used for computations")
+    args = parser.parse_args()
+
     run_methods = ['brute', 'upper', 'sampling', 'greedy']
     for method in run_methods:
         assert method in METHODS, f"Undefined method '{method}'"
@@ -46,7 +52,7 @@ if __name__ == "__main__":
         print(f"\rComputing k-SPCA bounds: {(k-1) / K:7.2%}", end='',
               flush=True)
         for method in run_methods:
-            L_S = METHODS[method](B, k, n_jobs=6)
+            L_S = METHODS[method](B, k, n_jobs=args.njobs)
             if k > 1:
                 # Make sure the results are monotonic
                 L_S = max(L_S, results[method][-1])
